@@ -1,59 +1,39 @@
-import { useState } from 'react'
+import { useState } from 'react';
+import Part1 from './components/part1-1'
+import Part2 from './components/part1-2'
+import Part3 from './components/part1-3'
+import Aurora from './styles/Aurora/Aurora';
 
-// const History = (props) => {
-//   if (props.allClicks.length === 0) {
-//     return (
-//       <div>
-//         the app is used by pressing the buttons
-//       </div>
-//     )
-//   }
 
-//   return (
-//     <div>
-//       button press history: {props.allClicks.join(' ')}
-//     </div>
-//   )
-// }
-
-// const Button = ({ onClick, text }) => <button onClick={onClick}>{text}</button>
-
-// const App = () => {
-//   const [left, setLeft] = useState(0)
-//   const [right, setRight] = useState(0)
-//   const [allClicks, setAll] = useState([])
-
-//   const handleLeftClick = () => {
-//     setAll(allClicks.concat('L'))
-//     setLeft(left + 1)
-//   }
-
-//   const handleRightClick = () => {
-//     setAll(allClicks.concat('R'))
-//     setRight(right + 1)
-//   }
-
-//   return (
-//     <div>
-//       {left}
-
-//       <Button onClick={handleLeftClick} text='left' />
-//       <Button onClick={handleRightClick} text='right' />
-//       {right}
-//       <History allClicks={allClicks} />
-//     </div>
-//   )
-// }
+const ButtonSwitch = ({ onClick, text }) => (
+  <button onClick={onClick} className="button-switch">
+    {text}
+  </button>
+)
 
 const App = () => {
-  const [value, setValue] = useState(10)
+  const [activePart, setActivePart] = useState(1);
 
-  const reset = () => setValue(0)
+  const handleSwitch = (part) => {
+    setActivePart(part);
+  }
 
   return (
     <div>
-      {value}
-      <button onClick={reset}>reset to zero</button>
+      <Aurora
+        colorStops={["#3A29FF", "#814fba", "#4819cb"]}
+        blend={3.0}
+        amplitude={0.5}
+        speed={0.3}
+      />
+
+      <ButtonSwitch onClick={() => handleSwitch(1)} text="Part1-1" />
+      <ButtonSwitch onClick={() => handleSwitch(2)} text="Part1-2" />
+      <ButtonSwitch onClick={() => handleSwitch(3)} text="Part1-3" />
+
+      {activePart === 1 && <Part1 />}
+      {activePart === 2 && <Part2 />}
+      {activePart === 3 && <Part3 />}
     </div>
   )
 }

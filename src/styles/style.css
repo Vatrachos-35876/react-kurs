@@ -31,7 +31,6 @@ body{
   -webkit-font-smoothing:antialiased;
   -moz-osx-font-smoothing:grayscale;
   line-height:1.4;
-  padding:var(--gap);
   transition:background var(--transition), color var(--transition);
 }
 
@@ -76,8 +75,7 @@ button{
   user-select:none;
   margin: 5px;
 }
-button:hover{transform:translateY(-1px)}
-button:active{transform:translateY(0)}
+button:active{transform:translateY(1px)}
 button:focus{outline:none; box-shadow:0 0 0 4px rgba(110,198,255,0.12)}
 
 button-primary{
@@ -93,6 +91,20 @@ button-ghost{
 button-danger{
   background:linear-gradient(180deg,var(--danger),rgba(255,107,107,0.12));
   color:#201010;
+}
+
+.button-switch{
+  border-radius:999px;
+  width: 140px;
+  padding:12px;
+  background:rgba(255, 255, 255, 0.048);
+  position:relative;
+  border:1px solid rgba(255, 255, 255, 0.365);
+  font-weight: 100;
+}
+
+.button-switch:hover{
+  background:rgba(255, 255, 255, 0.08);
 }
 
 /* Inputs */
