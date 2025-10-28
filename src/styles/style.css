@@ -22,7 +22,7 @@
 
 /* Reset / base */
 *{box-sizing:border-box}
-html,body,#root{height:100%}
+html{height:100%}
 body{
   margin:0;
   background:linear-gradient(180deg,var(--bg),var(--surface));
@@ -32,13 +32,6 @@ body{
   -moz-osx-font-smoothing:grayscale;
   line-height:1.4;
   transition:background var(--transition), color var(--transition);
-}
-
-/* Utility container */
-.container{
-  max-width:1100px;
-  margin:0 auto;
-  padding:calc(var(--gap)/2);
 }
 
 /* Typography */
@@ -78,33 +71,55 @@ button{
 button:active{transform:translateY(1px)}
 button:focus{outline:none; box-shadow:0 0 0 4px rgba(110,198,255,0.12)}
 
-button-primary{
-  background:linear-gradient(180deg,var(--accent),rgba(110,198,255,0.14));
-  color:#04121a;
-  border-color:rgba(255,255,255,0.04);
+/* Utility container */
+container{
+  display: block;
+  margin:0 auto;
+  width: 600px;
+  border: 3px solid rgba(255, 255, 255, 0.162);
+  border-radius: 25px;
+  padding: 20px 40px 60px 40px;
+  margin-top: 30px;
 }
-button-ghost{
-  background:transparent;
-  border-color:rgba(255,255,255,0.04);
-  color:var(--muted);
+
+buttons{
+  margin: 0 auto;
+  width: fit-content;
+  display: block;
 }
-button-danger{
-  background:linear-gradient(180deg,var(--danger),rgba(255,107,107,0.12));
-  color:#201010;
+
+activePart > div{
+  background: linear-gradient(45deg, #0f0f0fcb, #1b1331ac);
+  border-radius: 10px;
+  margin-top: 20px;
+  padding: 10px;
+  box-shadow: var(--shadow);
 }
 
 .button-switch{
   border-radius:999px;
-  width: 140px;
+  width: 110px;
   padding:12px;
-  background:rgba(255, 255, 255, 0.048);
+  background:var(--glass);
   position:relative;
   border:1px solid rgba(255, 255, 255, 0.365);
   font-weight: 100;
+  justify-content: center;
 }
 
 .button-switch:hover{
   background:rgba(255, 255, 255, 0.08);
+}
+
+.active-switch{
+  background:#e6eef3ea;
+  color: rgba(0, 0, 0, 0.919);
+  font-weight: 700;
+  border:2px solid rgba(20, 20, 20, 0.329);
+}
+
+.active-switch:hover{
+  background:#e6eef3;
 }
 
 /* Inputs */

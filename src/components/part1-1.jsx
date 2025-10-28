@@ -22,16 +22,16 @@ const Part1 = () => {
   return (
 
 <AnimatedContent
-  distance={150}
+  distance={50}
   direction="vertical"
   reverse={false}
   duration={1.2}
   ease="power3.out"
   initialOpacity={0.2}
   animateOpacity
-  scale={1.1}
+  scale={0.9}
   threshold={0.2}
-  delay={0.3}
+  delay={0}
 >
     <div>
       <h1>{course.name}</h1>
