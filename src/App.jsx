@@ -1,116 +1,60 @@
-// 1.5
+import { useState } from 'react';
+import Part1 from './components/part1-1';
+import Part2 from './components/part1-2';
+import Part3 from './components/part1-3';
+import Aurora from './styles/Aurora/Aurora';
+
+const ButtonSwitch = ({ onClick, text, isActive }) => (
+  <button
+    onClick={onClick}
+    className={`button-switch ${isActive ? 'active-switch' : ''}`}
+  >
+    {text}
+  </button>
+);
 
 const App = () => {
-  const course = {
-    name: 'Half Stack application development',
-    parts: [
-      {
-        name: 'Fundamentals of React',
-        exercises: 10
-      },
-      {
-        name: 'Using props to pass data',
-        exercises: 7
-      },
-      {
-        name: 'State of a component',
-        exercises: 14
-      }
-    ]
-  }
+  const [activePart, setActivePart] = useState(1);
+
+  const handleSwitch = (part) => {
+    setActivePart(part);
+  };
 
   return (
     <div>
-      <h1>{course.name}</h1>
-      <p>
-        {course.parts[0].name} {course.parts[0].exercises}
-      </p>
-      <p>
-        {course.parts[1].name} {course.parts[1].exercises}
-      </p>
-      <p>
-        {course.parts[2].name} {course.parts[2].exercises}
-      </p>
-      <p>
-        Number of exercises {course.parts[0].exercises + course.parts[1].exercises + course.parts[2].exercises}
-      </p>
+      <Aurora
+        colorStops={["#3A29FF", "#814fba", "#4819cb"]}
+        blend={3}
+        amplitude={0.5}
+        speed={0.3}
+      />
+      <container>
+        <buttons>
+          <ButtonSwitch
+            onClick={() => handleSwitch(1)}
+            text="Part1-1"
+            isActive={activePart === 1}
+            />
+          <ButtonSwitch
+            onClick={() => handleSwitch(2)}
+            text="Part1-2"
+            isActive={activePart === 2}
+            />
+          <ButtonSwitch
+            onClick={() => handleSwitch(3)}
+            text="Part1-3"
+            isActive={activePart === 3}
+            />
+        </buttons>
+      
+        <activePart>
+          {activePart === 1 && <Part1 />}
+          {activePart === 2 && <Part2 />}
+          {activePart === 3 && <Part3 />}
+        </activePart>
+      </container>
     </div>
-  )
-}
+  );
+};
 
-export default App
-
-// 1.4
-
-// const App = () => {
-//   const course = 'Half Stack application development'
-//   const parts = [
-//     {
-//       name: 'Fundamentals of React',
-//       exercises: 10
-//     },
-//     {
-//       name: 'Using props to pass data',
-//       exercises: 7
-//     },
-//     {
-//       name: 'State of a component',
-//       exercises: 14
-//     }
-//   ]
-
-//   return (
-//     <div>
-//       <h1>{course}</h1>
-//       <p>
-//         {parts[0].name} {parts[0].exercises}
-//       </p>
-//       <p>
-//         {parts[1].name} {parts[1].exercises}
-//       </p>
-//       <p>
-//         {parts[2].name} {parts[2].exercises}
-//       </p>
-//       <p>
-//         Number of exercises {parts[0].exercises + parts[1].exercises + parts[2].exercises}
-//       </p>
-//     </div>
-//   )
-// }
-
-
-// 1.3
-
-// const App = () => {
-//   const course = 'Half Stack application development'
-//   const part1 = {
-//     name: 'Fundamentals of React',
-//     exercises: 10
-//   }
-//   const part2 = {
-//     name: 'Using props to pass data',
-//     exercises: 7
-//   }
-//   const part3 = {
-//     name: 'State of a component',
-//     exercises: 14
-//   }
-
-//   return (
-//     <div>
-//       <h1>{course}</h1>
-//       <p>
-//         {part1.name} {part1.exercises}
-//       </p>
-//       <p>
-//         {part2.name} {part2.exercises}
-//       </p>
-//       <p>
-//         {part3.name} {part3.exercises}
-//       </p>
-//       <p>
-//         Number of exercises {part1.exercises + part2.exercises + part3.exercises}
-//       </p>      
-//     </div>
-//   )
-// }
+export default App;
