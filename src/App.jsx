@@ -1,60 +1,42 @@
-import { useState } from 'react';
-import Part1 from './components/part1-1';
-import Part2 from './components/part1-2';
-import Part3 from './components/part1-3';
-import Aurora from './styles/Aurora/Aurora';
+const Course = ({course}) => {
+  const result = course.parts.map(i => 
+    <li key={i.id}>{i.name}</li>
+  )
+  console.log(result);
 
-const ButtonSwitch = ({ onClick, text, isActive }) => (
-  <button
-    onClick={onClick}
-    className={`button-switch ${isActive ? 'active-switch' : ''}`}
-  >
-    {text}
-  </button>
-);
+  return (<div>
+    <h1>{course.name}</h1>
+    <ul>
+      {result}
+    </ul>
+  </div>
+  )
+}
 
 const App = () => {
-  const [activePart, setActivePart] = useState(1);
+  const course = {
+    id: 1,
+    name: 'Half Stack application development',
+    parts: [
+      {
+        name: 'Fundamentals of React',
+        exercises: 10,
+        id: 1
+      },
+      {
+        name: 'Using props to pass data',
+        exercises: 7,
+        id: 2
+      },
+      {
+        name: 'State of a component',
+        exercises: 14,
+        id: 3
+      }
+    ]
+  }
 
-  const handleSwitch = (part) => {
-    setActivePart(part);
-  };
+  return <Course course={course} />
+}
 
-  return (
-    <div>
-      <Aurora
-        colorStops={["#3A29FF", "#814fba", "#4819cb"]}
-        blend={3}
-        amplitude={0.5}
-        speed={0.3}
-      />
-      <container>
-        <buttons>
-          <ButtonSwitch
-            onClick={() => handleSwitch(1)}
-            text="Part1-1"
-            isActive={activePart === 1}
-            />
-          <ButtonSwitch
-            onClick={() => handleSwitch(2)}
-            text="Part1-2"
-            isActive={activePart === 2}
-            />
-          <ButtonSwitch
-            onClick={() => handleSwitch(3)}
-            text="Part1-3"
-            isActive={activePart === 3}
-            />
-        </buttons>
-      
-        <activePart>
-          {activePart === 1 && <Part1 />}
-          {activePart === 2 && <Part2 />}
-          {activePart === 3 && <Part3 />}
-        </activePart>
-      </container>
-    </div>
-  );
-};
-
-export default App;
+export default App
