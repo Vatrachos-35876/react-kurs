@@ -7,7 +7,7 @@ const PersonForm = ({ name, number, onNameChange, onNumberChange, onSubmit }) =>
       number: <input value={number} onChange={onNumberChange} />
     </div>
     <div>
-      <button type="submit">add</button>
+      <button type="submit">Add</button>
     </div>
   </form>
 )

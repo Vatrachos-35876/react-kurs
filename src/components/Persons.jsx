@@ -1,9 +1,9 @@
 import Person from './Person'
 
-const Persons = ({ persons }) => (
+const Persons = ({ persons, onDeletePerson }) => (
   <ul>
     {persons.map(p => (
-      <Person key={p.id} person={p} />
+      <Person key={p.id} person={p} onDeletePerson={onDeletePerson} />
     ))}
   </ul>
 )

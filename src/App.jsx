@@ -1,54 +1,59 @@
 import { useState } from 'react'
-import Filter from './components/Filter'
-import PersonForm from './components/PersonForm'
-import Persons from './components/Persons'
+import CourseApp from './sections/CourseApp'
+import PhonebookApp from './sections/PhonebookApp'
+import CountriesApp from './sections/CountriesApp'
+import DarkVeil from './components/DarkVeil'
+import './styles/style.css'
 
 const App = () => {
-  const [persons, setPersons] = useState([
-    { name: 'Arto Hellas', number: '040-123456', id: 1 },
-    { name: 'Ada Lovelace', number: '39-44-5323523', id: 2 },
-  ])
-  const [newName, setNewName] = useState('')
-  const [newNumber, setNewNumber] = useState('')
-  const [filter, setFilter] = useState('')
+  const [activeSection, setActiveSection] = useState('countries')
 
-  const handleFilterChange = (e) => setFilter(e.target.value)
-  const handleNameChange = (e) => setNewName(e.target.value)
-  const handleNumberChange = (e) => setNewNumber(e.target.value)
+  const sections = [
+    { id: 'course', label: 'Course Information' },
+    { id: 'phonebook', label: 'Phonebook' },
+    { id: 'countries', label: 'Countries' },
+  ]
 
-  const addPerson = (e) => {
-    e.preventDefault()
-    const exists = persons.some(p => p.name === newName)
-    if (exists) {
-      alert(`${newName} is already added to phonebook`)
-      return
+  const renderSection = () => {
+    switch (activeSection) {
+      case 'course':
+        return <CourseApp />
+      case 'phonebook':
+        return <PhonebookApp />
+      case 'countries':
+        return <CountriesApp />
+      default:
+        return <CountriesApp />
     }
-    setPersons(persons.concat({ name: newName, number: newNumber, id: persons.length + 1 }))
-    setNewName('')
-    setNewNumber('')
   }
 
-  const personsToShow = filter
-    ? persons.filter(p => p.name.toLowerCase().includes(filter.toLowerCase()))
-    : persons
-
   return (
-    <div>
-      <h2>Phonebook</h2>
-      <Filter value={filter} onChange={handleFilterChange} />
+    <>
+      <DarkVeil speed={1} scanlineFrequency={0.5} />
+      <div className="app-container">
+      {/* Left Sidebar Menu */}
+      <div className="app-sidebar">
+        <h2 className="app-sidebar-title">Menu</h2>
 
-      <h3>Add a new</h3>
-      <PersonForm
-        name={newName}
-        number={newNumber}
-        onNameChange={handleNameChange}
-        onNumberChange={handleNumberChange}
-        onSubmit={addPerson}
-      />
+        <div className="app-sections">
+          {sections.map(section => (
+            <button
+              key={section.id}
+              onClick={() => setActiveSection(section.id)}
+              className={`menu-button ${activeSection === section.id ? 'active' : ''}`}
+            >
+              <span>{section.label}</span>
+            </button>
+          ))}
+        </div>
+      </div>
 
-      <h3>Numbers</h3>
-      <Persons persons={personsToShow} />
+      {/* Main Content Area */}
+      <div className="app-content">
+        {renderSection()}
+      </div>
     </div>
+    </>
   )
 }
 

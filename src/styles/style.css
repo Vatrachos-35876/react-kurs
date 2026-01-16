@@ -8,29 +8,29 @@
   --bg-2: #0d0416;
   --surface: #0d0416;
   --surface-2: #150a24;
-  --muted: #b8a5d1;
-  --text: #e8def8;
-  --accent: #a855f7;   /* primary accent - purple */
-  --accent-2: #c084fc; /* secondary accent - lighter purple */
+  --muted: #a8a8a8;
+  --text: #e8e8e8;
+  --accent: #ffffff;   /* primary accent - white/glass */
+  --accent-2: #d0d0d0; /* secondary accent - light gray */
   --danger: #ff6b6b;
-  --glass: rgba(168, 85, 247, 0.08);
-  --glass-border: rgba(168, 85, 247, 0.2);
+  --glass: rgba(255, 255, 255, 0.05);
+  --glass-border: rgba(255, 255, 255, 0.1);
 
   --radius: 12px;
   --gap: 16px;
   --shadow: 0 8px 32px rgba(0, 0, 0, 0.8);
-  --glow: 0 0 20px rgba(168, 85, 247, 0.15);
+  --glow: 0 0 20px rgba(255, 255, 255, 0.1);
   --transition: 180ms cubic-bezier(.2,.9,.3,1);
 }
 
 /* Reset / base */
 *{box-sizing:border-box}
-html{height:100%; min-height:100vh}
+html{height:100%; min-height:100vh; overflow:hidden}
 body{
   margin:0;
-  padding: 5px;
-  background:linear-gradient(135deg, #000000 0%, #0d0416 50%, #0a0010 100%);
-  background-attachment: fixed;
+  /* margin-right: -15px; */
+  padding: 0px;
+  background:#000000;
   color:var(--text);
   font-family: Inter, ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
   -webkit-font-smoothing:antialiased;
@@ -65,7 +65,7 @@ button{
   align-items:center;
   gap:0.5rem;
   padding:0.55rem 0.85rem;
-  border-radius:10px;
+  border-radius:100px;
   border:1px solid var(--glass-border);
   background:var(--glass);
   backdrop-filter:blur(8px);
@@ -78,12 +78,12 @@ button{
   margin: 5px;
 }
 button:hover{
-  background:rgba(168, 85, 247, 0.15);
+  background:rgba(255, 255, 255, 0.1);
   border-color:var(--accent);
   box-shadow:var(--glow);
 }
 button:active{transform:translateY(1px)}
-button:focus{outline:none; box-shadow:0 0 0 4px rgba(168, 85, 247, 0.2)}
+button:focus{outline:none; box-shadow:0 0 0 4px rgba(255, 255, 255, 0.1)}
 
 /* Utility container */
 container{
@@ -131,12 +131,12 @@ activePart > div{
 }
 
 .button-switch:hover{
-  background:rgba(168, 85, 247, 0.12);
+  background:rgba(255, 255, 255, 0.08);
   border-color:var(--accent);
 }
 
 .active-switch{
-  background:linear-gradient(135deg, var(--accent), var(--accent-2));
+  background:rgba(255, 255, 255, 0.15);
   color: #ffffff;
   font-weight: 700;
   border:2px solid var(--accent);
@@ -144,8 +144,8 @@ activePart > div{
 }
 
 .active-switch:hover{
-  background:linear-gradient(135deg, var(--accent-2), var(--accent));
-  box-shadow:0 0 25px rgba(168, 85, 247, 0.3);
+  background:rgba(255, 255, 255, 0.2);
+  box-shadow:0 0 25px rgba(255, 255, 255, 0.2);
 }
 
 /* Inputs */
@@ -192,7 +192,7 @@ form input{
 }
 
 form button[type="submit"]{
-  background:linear-gradient(135deg, var(--accent), var(--accent-2));
+  background:rgba(255, 255, 255, 0.15);
   border:1px solid var(--accent);
   color:#ffffff;
   font-weight:700;
@@ -202,12 +202,13 @@ form button[type="submit"]{
   margin-top: auto;
   box-shadow:var(--glow);
   transition: 0.3s;
+  text-align: center;
 }
 
 form button[type="submit"]:hover{
-  background:linear-gradient(135deg, var(--accent-2), var(--accent));
+  background:rgba(255, 255, 255, 0.25);
   transform:translateY(-1px);
-  box-shadow:0 0 30px rgba(168, 85, 247, 0.4);
+  box-shadow:0 0 30px rgba(255, 255, 255, 0.2);
 }
 
 form button[type="submit"]:active{
@@ -268,3 +269,189 @@ a:hover{color:var(--accent-2); text-decoration:underline}
 .center{display:flex;align-items:center;justify-content:center}
 .gap-sm{gap:8px}
 .gap-md{gap:16px}
+
+/* App Layout */
+.app-container {
+  display: flex;
+  height: 100vh;
+  gap: 20px;
+  padding: 20px;
+  overflow: hidden;
+}
+
+.app-sidebar {
+  width: 250px;
+  background: var(--glass);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid var(--glass-border);
+  border-radius: var(--radius);
+  padding: 20px;
+  height: fit-content;
+  position: sticky;
+  top: 20px;
+  box-shadow: var(--shadow), var(--glow);
+}
+
+.app-sidebar-title {
+  margin: 0 0 20px 0;
+  color: var(--text);
+  font-size: 18px;
+  font-weight: 600;
+  text-align: center;
+  border-bottom: 1px solid var(--glass-border);
+  padding-bottom: 15px;
+}
+
+.app-sections {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.menu-button {
+  padding: 12px 16px;
+  border-radius: 100px;
+  border: 1px solid var(--glass-border);
+  background: var(--glass);
+  color: var(--text);
+  cursor: pointer;
+  font-weight: 600;
+  transition: all var(--transition);
+  font-size: 14px;
+  text-align: center;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.menu-button:hover {
+  background: rgba(255, 255, 255, 0.08);
+  border-color: var(--accent);
+  box-shadow: var(--glow);
+}
+
+.menu-button.active {
+  background: rgba(255, 255, 255, 0.15);
+  color: #ffffff;
+  font-weight: 700;
+  border-color: var(--accent);
+  box-shadow: var(--glow);
+  transform: translateX(5px);
+}
+
+.app-content {
+  flex: 1;
+  background: var(--glass);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 2px solid var(--glass-border);
+  border-radius: 20px;
+  padding: 40px;
+  box-shadow: var(--shadow), var(--glow);
+  height: 100%;
+  overflow-y: auto;
+}
+
+/* Notification Styles */
+.notification {
+  padding: 15px 20px;
+  margin-bottom: 15px;
+  border-radius: var(--radius);
+  font-size: 15px;
+  font-weight: 500;
+  border: 1px solid;
+  background: var(--glass);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  animation: slideIn 0.3s ease-out;
+}
+
+.notification.success {
+  border-color: rgba(34, 197, 94, 0.4);
+  background: rgba(34, 197, 94, 0.08);
+  color: #22c55e;
+  box-shadow: 0 8px 32px rgba(34, 197, 94, 0.1), 0 0 20px rgba(34, 197, 94, 0.08);
+}
+
+.notification.error {
+  border-color: rgba(255, 107, 107, 0.4);
+  background: rgba(255, 107, 107, 0.08);
+  color: #ff6b6b;
+  box-shadow: 0 8px 32px rgba(255, 107, 107, 0.1), 0 0 20px rgba(255, 107, 107, 0.08);
+}
+
+@keyframes slideIn {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Weather Styles */
+.weather {
+  margin-top: 20px;
+  padding: 25px;
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid var(--glass-border);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow), var(--glow);
+}
+
+.weather.loading,
+.weather.error,
+.weather.empty {
+  padding: 20px;
+  color: var(--muted);
+}
+
+.weather.error {
+  border-color: rgba(255, 107, 107, 0.3);
+  background: rgba(255, 107, 107, 0.08);
+  color: #ff6b6b;
+}
+
+.weather-title {
+  margin-top: 0;
+  color: var(--text);
+}
+
+.weather-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 15px;
+  margin-bottom: 15px;
+}
+
+.weather-item-label {
+  margin: 0 0 5px 0;
+  color: var(--muted);
+  font-size: 14px;
+}
+
+.weather-item-value {
+  margin: 0;
+  font-size: 18px;
+  color: var(--text);
+  font-weight: 600;
+}
+
+.weather-item-value.small {
+  font-size: 16px;
+  font-weight: normal;
+}
+
+.weather-wind {
+  margin-top: 15px;
+}
+
+.weather-icon {
+  margin-top: 15px;
+  text-align: center;
+  filter: drop-shadow(0 0 10px rgba(168, 85, 247, 0.3));
+}
