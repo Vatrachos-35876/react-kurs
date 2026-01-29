@@ -57,7 +57,7 @@ const PhonebookApp = () => {
     const personObject = {
       name: newName,
       number: newNumber,
-      id: persons.length > 0 ? Math.max(...persons.map(p => p.id)) + 1 : 1
+      id: String(persons.length > 0 ? Math.max(...persons.map(p => parseInt(p.id) || 0)) + 1 : 1)
     }
     
     personService
@@ -83,8 +83,8 @@ const PhonebookApp = () => {
           showNotification(`Deleted ${person.name}`)
         })
         .catch(error => {
-          showNotification(`${person.name} has already been removed from server`, 'error')
-          setPersons(persons.filter(p => p.id !== id))
+          console.error('Delete error:', error.response?.status, error.message)
+          showNotification(`Failed to delete ${person.name}: ${error.response?.status}`, 'error')
         })
     }
   }
